@@ -9,9 +9,14 @@ largura = 640
 altura = 460
 tela = pygame.display.set_mode((largura, altura), pygame.RESIZABLE)
 carro = pygame.image.load('trabalho-programacao-funcional/carro5-2.png')
+carroE = pygame.image.load('trabalho-programacao-funcional/carroE5-2.png')
+carroD = pygame.image.load('trabalho-programacao-funcional/carroD5-2.png')
 carro_l = 250
 carro_a = 150
 carro = pygame.transform.scale(carro, (carro_l, carro_a))
+carroE = pygame.transform.scale(carroE, (carro_l, carro_a))
+carroD = pygame.transform.scale(carroD, (carro_l, carro_a))
+
 pista = pygame.image.load('trabalho-programacao-funcional/pista5.png')
 x = 270
 y = altura / 2
@@ -32,11 +37,15 @@ while True:
     keys = pygame.key.get_pressed()
     if keys[K_a]:
         x -= 5
-    if keys[K_d]:
+        carro_atual = carroE
+    elif keys[K_d]:
         x += 5
+        carro_atual = carroD
+    else:
+        carro_atual = carro
 
     tela.blit(pista, (0, 0))
-    tela.blit(carro, (x, y))
+    tela.blit(carro_atual, (x, y))
     
     pygame.display.flip()
     relogio.tick(60)

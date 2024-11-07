@@ -108,7 +108,7 @@ def exibir_creditos():
     while exibindo:
         tela.fill(AZUL)
         desenhar_texto("Créditos", fonte_titulo, BRANCO, tela, LARGURA_TELA // 2, ALTURA_TELA // 4)
-        desenhar_texto("Desenvolvido por: Sua Equipe", fonte_menu, BRANCO, tela, LARGURA_TELA // 2, ALTURA_TELA // 2)
+        desenhar_texto("Desenvolvido por:...", fonte_menu, BRANCO, tela, LARGURA_TELA // 2, ALTURA_TELA // 2)
         
         # Desenhando o botão "Voltar"
         botao_voltar = pygame.Rect(LARGURA_TELA // 2 - 100, ALTURA_TELA - 80, 200, 50)

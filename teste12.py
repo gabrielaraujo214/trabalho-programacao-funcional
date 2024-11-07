@@ -21,11 +21,11 @@ velocidade_obstaculo = 5
 obstacles = []
 
 # Carregar imagem de fundo e redimensionar
-background_image = pygame.image.load(r"C:\Users\Micro\Desktop\codigos\pygame\pista5.png")  # Substitua pelo caminho da sua imagem de fundo
+background_image = pygame.image.load(r"pista5.png")  # Substitua pelo caminho da sua imagem de fundo
 background_image = pygame.transform.scale(background_image, (larguraTela, alturaTela))
 
 # Carregar imagem do carro para os obstáculos
-car_image = pygame.image.load(r"C:\Users\Micro\Desktop\codigos\pygame\carro5.png")  # Substitua pelo caminho da sua imagem
+car_image = pygame.image.load(r"carro5.png")  # Substitua pelo caminho da sua imagem
 car_image = pygame.transform.scale(car_image, (OBSTACLE_WIDTH, OBSTACLE_HEIGHT))  # Redimensiona a imagem
 
 # Posições fixas para os obstáculos (três caminhos)

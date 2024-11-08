@@ -6,8 +6,8 @@ from sys import exit
 pygame.init()
 
 relogio = pygame.time.Clock()
-largura = 640
-altura = 460
+largura = 1000
+altura = 480
 tela = pygame.display.set_mode((largura, altura), pygame.RESIZABLE)
 carro = pygame.image.load('carro5-2.png')
 carroE = pygame.image.load('carroE5-2.png')

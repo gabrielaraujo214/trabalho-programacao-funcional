@@ -17,7 +17,7 @@ BRANCO = (255, 255, 255)
 VELOCIDADE_PISTA = 5
 
 # Carregar imagem do cenário
-cenario = pygame.image.load("pista5.png")
+cenario = pygame.image.load("img\cenario\cenario1.png")
 cenario = pygame.transform.scale(cenario, (LARGURA_TELA, ALTURA_TELA))
 
 # Função principal

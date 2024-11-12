@@ -8,11 +8,11 @@ relogio = pygame.time.Clock()
 largura = 1000
 altura = 480
 tela = pygame.display.set_mode((largura, altura), pygame.RESIZABLE)
-carro = pygame.image.load('carro6.png')
+carro = pygame.image.load('img\carro\carro1.png')
 carro_l = 250
 carro_a = 150
 carro = pygame.transform.scale(carro, (80, 50))
-pista = pygame.image.load('pista5.png')
+pista = pygame.image.load('img\cenario\cenario1.png')
 pista = pygame.transform.scale(pista, (1000, 480))
 y = altura / 2
 

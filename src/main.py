@@ -39,12 +39,12 @@ pontuacao = Pontuacao(fonte)  # Criando a instância da pontuação
 # Controlador de FPS
 clock = pygame.time.Clock()
 
-# Função para verificar colisões
-def verificar_colisao(carro, obstaculos):
-    for obstaculo in obstaculos:
-        if carro.rect.colliderect(obstaculo.rect):
-            return True  # Colisão detectada
-    return False
+# # Função para verificar colisões
+# def verificar_colisao(carro, obstaculos):
+#     for obstaculo in obstaculos:
+#         if carro.rect.colliderect(obstaculo.rect):
+#             return True  # Colisão detectada
+#     return False
 
 # Loop principal do jogo
 rodando = True

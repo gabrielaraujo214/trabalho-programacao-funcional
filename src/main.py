@@ -32,7 +32,7 @@ carro = Carro(tela, caminho_imagem_carro, posicoes_fixas, tamanho_carro)
 caminho_imagem_cenario = "img/cenario/cenario1.png"
 cenario = Cenario(LARGURA_TELA, ALTURA_TELA, caminho_imagem_cenario)
 
-caminho_imagem_obstaculo = "img/carro/carro1.png"
+caminho_imagem_obstaculo = "img/carro/carro3.png"
 obstaculos = []
 for _ in range(2):
     pos_x_inicial = random.choice(posicoes_fixas)

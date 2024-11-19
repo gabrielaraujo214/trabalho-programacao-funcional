@@ -5,6 +5,7 @@ from carro.carro import Carro
 from cenario.cenario import Cenario
 from obstaculo.obstaculo import Obstaculo
 from pontuacao.pontuacao import Pontuacao
+from medidor_velocidade.medidor_velocidade import MedidorVelocidade 
 
 pygame.init()
 
@@ -29,7 +30,7 @@ caminho_imagem_carro = "img/carro/carro1.png"
 carro = Carro(tela, caminho_imagem_carro, posicoes_fixas, tamanho_carro)
 
 caminho_imagem_cenario = "img/cenario/cenario1.png"
-cenario = Cenario(LARGURA_TELA, ALTURA_TELA, 5, caminho_imagem_cenario)
+cenario = Cenario(LARGURA_TELA, ALTURA_TELA, caminho_imagem_cenario)
 
 caminho_imagem_obstaculo = "img/carro/carro1.png"
 obstaculos = []
@@ -42,33 +43,55 @@ for _ in range(2):
 fonte = pygame.font.Font(None, 36)
 pontuacao = Pontuacao(fonte)
 
+# Instanciando o medidor de velocidade
+medidor_velocidade = MedidorVelocidade(fonte)
+
 clock = pygame.time.Clock()
 rodando = True
 
+# Variável que controla a velocidade dos obstáculos
+velocidade_obstaculos = 5  # Velocidade inicial dos obstáculos
+tempo_decorrido = 0  # Tempo decorrido em segundos
+
 while rodando:
+    delta_time = clock.get_time() / 1000  # Tempo em segundos desde o último frame
+    tempo_decorrido += delta_time
+
+    # Aumenta a velocidade dos obstáculos a cada 5 segundos
+    if tempo_decorrido >= 5:
+        velocidade_obstaculos += 0.5  # Aumenta a velocidade mais rápido
+        if velocidade_obstaculos > 15:  # Limita a velocidade máxima
+            velocidade_obstaculos = 15
+        tempo_decorrido = 0  # Reset o tempo decorrido
+
+
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:
             rodando = False
         carro.processar_eventos(evento)
 
-    cenario.atualizar()
+    cenario.atualizar(velocidade_obstaculos)
     cenario.desenhar(tela)
     carro.atualizar_rastro()
     carro.desenhar()
 
     for obstaculo in obstaculos:
-        obstaculo.mover()
+        obstaculo.mover(velocidade_obstaculos)  # Passa a velocidade como argumento
         if obstaculo.rect.y > ALTURA_TELA:
-            obstaculo.reset(posicoes_fixas, carro.posicao_atual)  # Passa a posição do carro para o reset
+            obstaculo.reset(posicoes_fixas)  # Reset da posição do obstáculo
         obstaculo.desenhar()
 
         # Detecção de colisão
         if carro.get_rect().colliderect(obstaculo.rect):
             print("Colisão detectada! Encerrando o jogo.")
+            print(f"Pontuação final: {pontuacao.pontos}")  # Exibe a pontuação final
             rodando = False  # Sai do loop principal
 
     pontuacao.atualizar()
     pontuacao.mostrar(tela)
+
+    # Atualizando e desenhando o medidor de velocidade
+    medidor_velocidade.desenhar(tela, velocidade_obstaculos)
 
     pygame.display.flip()
     clock.tick(60)

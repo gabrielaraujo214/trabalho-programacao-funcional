@@ -1,10 +1,10 @@
 import pygame
 import sys
 import random
-from carro.carro1 import Carro
-from cenario.cenario1 import Cenario
-from obstaculo.obstaculo1 import Obstaculo  # Importando a classe Obstaculo
-from pontuacao.pontuacao1 import Pontuacao  # Importando a classe Pontuacao
+from carro.carro import Carro
+from cenario.cenario import Cenario
+from obstaculo.obstaculo import Obstaculo
+from pontuacao.pontuacao import Pontuacao
 
 # Inicializa o Pygame
 pygame.init()

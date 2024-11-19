@@ -20,6 +20,7 @@ class Obstaculo:
 
         # Definir a posição e o retângulo do obstáculo
         self.rect = pygame.Rect(pos_x - self.OBSTACLE_WIDTH / 2, pos_y, self.OBSTACLE_WIDTH, self.OBSTACLE_HEIGHT)
+        self.posicoes_fixas = [int(largura_tela * 0.375), int(largura_tela * 0.475), int(largura_tela * 0.575)]  # Posições proporcionais
 
     def mover(self):
         """Move o obstáculo para baixo"""
@@ -28,7 +29,7 @@ class Obstaculo:
     def reset(self):
         """Reseta a posição do obstáculo quando ele sai da tela"""
         self.rect.y = -self.OBSTACLE_HEIGHT
-        self.rect.x = random.choice([420, 515, 615])  # Posições aleatórias
+        self.rect.x = random.choice(self.posicoes_fixas)  # Usando posições proporcionais
 
     def desenhar(self):
         """Desenha o obstáculo na tela"""

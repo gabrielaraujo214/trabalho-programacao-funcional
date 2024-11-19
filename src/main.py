@@ -59,8 +59,7 @@ while rodando:
     for obstaculo in obstaculos:
         obstaculo.mover()
         if obstaculo.rect.y > ALTURA_TELA:
-            obstaculo.reset()
-            obstaculo.rect.x = random.choice(posicoes_fixas)
+            obstaculo.reset(posicoes_fixas, carro.posicao_atual)  # Passa a posição do carro para o reset
         obstaculo.desenhar()
 
         # Detecção de colisão

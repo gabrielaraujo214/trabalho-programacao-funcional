@@ -26,10 +26,15 @@ class Obstaculo:
         """Move o obstáculo para baixo"""
         self.rect.y += 5  # Velocidade fixa de movimento para baixo
 
-    def reset(self):
+    def reset(self, posicoes_fixas, carro_posicao_atual=None):
         """Reseta a posição do obstáculo quando ele sai da tela"""
         self.rect.y = -self.OBSTACLE_HEIGHT
-        self.rect.x = random.choice(self.posicoes_fixas)  # Usando posições proporcionais
+        
+        # Garante que pelo menos um obstáculo esteja no mesmo caminho do carro
+        if carro_posicao_atual is not None and random.random() < 0.5:  # 50% de chance do obstáculo estar no caminho do carro
+            self.rect.x = posicoes_fixas[carro_posicao_atual]  # Posiciona o obstáculo no caminho do carro
+        else:
+            self.rect.x = random.choice(posicoes_fixas)  # Ou posiciona aleatoriamente em uma das posições fixas
 
     def desenhar(self):
         """Desenha o obstáculo na tela"""

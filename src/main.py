@@ -9,16 +9,23 @@ from pontuacao.pontuacao import Pontuacao
 # Inicializa o Pygame
 pygame.init()
 
-# Definindo dimensões da tela
-LARGURA_TELA = 1000
-ALTURA_TELA = 480
+# Obter a resolução da tela atual
+info = pygame.display.Info()
+LARGURA_TELA = info.current_w - 50  # Subtraímos alguns pixels para evitar a tela cheia
+ALTURA_TELA = info.current_h - 100  # Subtraímos para deixar espaço para as barras do sistema
+
+# Definindo a tela como janela maximizada com a barra de título (não redimensionável)
 tela = pygame.display.set_mode((LARGURA_TELA, ALTURA_TELA))
 pygame.display.set_caption("Road Fighter")
+
+# Definindo o tamanho do carro de forma proporcional
+LARGURA_CARRO = int(LARGURA_TELA * 0.1)  # 10% da largura da tela
+ALTURA_CARRO = int(ALTURA_TELA * 0.14)   # 14% da altura da tela
+tamanho_carro = (LARGURA_CARRO, ALTURA_CARRO)
 
 # Instanciar o carro
 caminho_imagem_carro = "img/carro/carro1.png"
 posicoes_fixas = [420, 515, 615]  # Posições fixas para o carro
-tamanho_carro = (80, 50)
 carro = Carro(tela, caminho_imagem_carro, posicoes_fixas, tamanho_carro)
 
 # Instanciar o cenário
@@ -38,13 +45,6 @@ pontuacao = Pontuacao(fonte)  # Criando a instância da pontuação
 
 # Controlador de FPS
 clock = pygame.time.Clock()
-
-# # Função para verificar colisões
-# def verificar_colisao(carro, obstaculos):
-#     for obstaculo in obstaculos:
-#         if carro.rect.colliderect(obstaculo.rect):
-#             return True  # Colisão detectada
-#     return False
 
 # Loop principal do jogo
 rodando = True
@@ -75,11 +75,6 @@ while rodando:
 
     # Exibir a pontuação na tela
     pontuacao.mostrar(tela)
-
-    # # Verificar se houve colisão entre o carro e os obstáculos
-    # if verificar_colisao(carro, obstaculos):
-    #     print("Colisão detectada!")
-    #     rodando = False  # Finaliza o jogo em caso de colisão
 
     # Atualizar a tela
     pygame.display.flip()

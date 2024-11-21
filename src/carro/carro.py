@@ -6,7 +6,7 @@ class Carro:
         self.imagem = self._carregar_imagem(caminho_imagem, tamanho_carro)
         self.posicoes_fixas = posicoes_fixas
         self.posicao_atual = 1  # Posição inicial no meio
-        self.y = self.tela.get_height() / 2
+        self.y = self.tela.get_height() / 2 + 230
         self.rastro = []
         self.rastro_surface = pygame.Surface((tela.get_width(), tela.get_height()), pygame.SRCALPHA)
 
@@ -36,7 +36,9 @@ class Carro:
 
     def desenhar(self):
         self.desenhar_rastro()
+        self.tela.blit(self.rastro_surface, (0, 40))
         self.tela.blit(self.rastro_surface, (0, 0))
+        self.tela.blit(self.rastro_surface, (0, -40))
         self.tela.blit(self.imagem, (self.posicoes_fixas[self.posicao_atual], self.y))
 
     def get_rect(self):

@@ -29,7 +29,7 @@ posicoes_fixas = [
 caminho_imagem_carro = "img/carro/carro1.png"
 carro = Carro(tela, caminho_imagem_carro, posicoes_fixas, tamanho_carro)
 
-caminho_imagem_cenario = "img/cenario/cenario1.png"
+caminho_imagem_cenario = "img/cenario/cenario3.png"
 cenario = Cenario(LARGURA_TELA, ALTURA_TELA, caminho_imagem_cenario)
 
 caminho_imagem_obstaculo = "img/carro/carro3.png"

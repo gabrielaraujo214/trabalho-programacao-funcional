@@ -1,11 +1,22 @@
 import pygame
 import sys
 import random
+import os
+
 from carro.carro import Carro
 from cenario.cenario import Cenario
 from obstaculo.obstaculo import Obstaculo
 from pontuacao.pontuacao import Pontuacao
 from medidor_velocidade.medidor_velocidade import MedidorVelocidade 
+
+# Função para lidar com caminhos de recursos
+def get_resource_path(relative_path):
+    """Resolve caminhos de recursos para compatibilidade com executáveis."""
+    if hasattr(sys, '_MEIPASS'):
+        # Quando empacotado no PyInstaller
+        return os.path.join(sys._MEIPASS, relative_path)
+    # Durante o desenvolvimento
+    return os.path.join(os.path.abspath("."), relative_path)
 
 pygame.init()
 
@@ -26,13 +37,14 @@ posicoes_fixas = [
     int(LARGURA_TELA * 0.575) 
 ]
 
-caminho_imagem_carro = "img/carro/carro1.png"
+# Caminhos de imagens ajustados com `get_resource_path`
+caminho_imagem_carro = get_resource_path("src/img/carro1.png")
 carro = Carro(tela, caminho_imagem_carro, posicoes_fixas, tamanho_carro)
 
-caminho_imagem_cenario = "img/cenario/cenario1.png"
+caminho_imagem_cenario = get_resource_path("src/img/cenario1.png")
 cenario = Cenario(LARGURA_TELA, ALTURA_TELA, caminho_imagem_cenario)
 
-caminho_imagem_obstaculo = "img/carro/carro3.png"
+caminho_imagem_obstaculo = get_resource_path("src/img/carro3.png")
 obstaculos = []
 for _ in range(2):
     pos_x_inicial = random.choice(posicoes_fixas)
@@ -63,7 +75,6 @@ while rodando:
         if velocidade_obstaculos > 15:  # Limita a velocidade máxima
             velocidade_obstaculos = 15
         tempo_decorrido = 0  # Reset o tempo decorrido
-
 
     for evento in pygame.event.get():
         if evento.type == pygame.QUIT:

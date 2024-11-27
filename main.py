@@ -13,7 +13,7 @@ from medidor_velocidade import MedidorVelocidade
 def get_resource_path(relative_path):
     """Resolve caminhos de recursos para compatibilidade com executáveis."""
     try:
-        base_path = sys._MEIPASS
+        base_path = sys._MEIPASS # type: ignore
     except AttributeError:
         base_path = os.path.abspath(".")
     return os.path.join(base_path, relative_path)
